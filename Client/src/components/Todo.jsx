@@ -127,7 +127,8 @@ const Todo = () => {
       });
   };
 
-  function logout(params) {
+  function logout() {
+    console.log("clicked");
     localStorage.removeItem("token");
   }
   const handleEditRequest = (taskId, newTaskValue) => {
