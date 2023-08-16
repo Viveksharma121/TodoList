@@ -129,6 +129,7 @@ const Todo = () => {
 
   function logout() {
     console.log("clicked");
+    console.log(localStorage.getItem("token"));
     localStorage.removeItem("token");
   }
   const handleEditRequest = (taskId, newTaskValue) => {
