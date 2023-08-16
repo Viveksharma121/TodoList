@@ -123,7 +123,7 @@ app.get("/piggy", async (req, res) => {
   }
 });
 app.get("/", (req, res) => {
-  res.json("Hello");
+  res.json("Hello hi ");
 });
 
 //creating new task
