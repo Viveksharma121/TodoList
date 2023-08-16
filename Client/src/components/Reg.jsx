@@ -15,12 +15,17 @@ function Reg() {
         return;
       }
 
-      const response = await axios.post("todo-list-pl2e.vercel.app/register", {
-        name: username,
-        email,
-        password,
+      const response = await axios({
+        method: "post",
+        url: "https://todo-list-pl2e.vercel.app/register", // <-- Add 'http://' or 'https://'
+        data: {
+          name: username,
+          email,
+          password,
+        },
       });
 
+      console.log(response.data);
       if (!response.ok) {
         window.alert("Email id already exists");
         return;

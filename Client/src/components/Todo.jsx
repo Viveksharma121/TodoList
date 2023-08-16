@@ -56,7 +56,7 @@ const Todo = () => {
   };
 
   const fetchAndStore = () => {
-    fetch("todo-list-pl2e.vercel.app/piggy", {
+    fetch("https://todo-list-pl2e.vercel.app/piggy", {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -91,7 +91,7 @@ const Todo = () => {
     e.preventDefault();
     if (inputValue) {
       const newTask = { task: inputValue, userId: getUserIdFromToken() };
-      fetch("todo-list-pl2e.vercel.app/tasks", {
+      fetch("https://todo-list-pl2e.vercel.app/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const Todo = () => {
 
   const handleDelete = (taskId) => {
     // Send a DELETE request to delete the task
-    fetch(`todo-list-pl2e.vercel.app/tasks/${taskId}`, {
+    fetch(`https://todo-list-pl2e.vercel.app/tasks/${taskId}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -131,7 +131,7 @@ const Todo = () => {
     localStorage.removeItem("token");
   }
   const handleEditRequest = (taskId, newTaskValue) => {
-    fetch(`todo-list-pl2e.vercel.app/tasks/${taskId}`, {
+    fetch(`https://todo-list-pl2e.vercel.app/tasks/${taskId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
