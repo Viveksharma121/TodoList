@@ -128,10 +128,12 @@ const Todo = () => {
   };
 
   function logout() {
-    console.log("clicked");
+    console.log("Logout function started");
     console.log(localStorage.getItem("token"));
     localStorage.removeItem("token");
+    console.log("Token removed");
   }
+
   const handleEditRequest = (taskId, newTaskValue) => {
     fetch(`https://todo-list-pl2e.vercel.app/tasks/${taskId}`, {
       method: "PUT",
