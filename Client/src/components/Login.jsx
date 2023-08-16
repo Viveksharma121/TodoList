@@ -10,10 +10,13 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "todo-list-pearl-ten-34.vercel.app/login",
+        {
+          email,
+          password,
+        }
+      );
 
       const data = response.data;
 

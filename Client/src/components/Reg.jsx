@@ -15,11 +15,14 @@ function Reg() {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/register", {
-        name: username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "todo-list-pearl-ten-34.vercel.app/register",
+        {
+          name: username,
+          email,
+          password,
+        }
+      );
 
       if (!response.ok) {
         window.alert("Email id already exists");

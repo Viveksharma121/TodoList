@@ -56,7 +56,7 @@ const Todo = () => {
   };
 
   const fetchAndStore = () => {
-    fetch("http://localhost:3000/piggy", {
+    fetch("todo-list-pearl-ten-34.vercel.app/piggy", {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -91,7 +91,7 @@ const Todo = () => {
     e.preventDefault();
     if (inputValue) {
       const newTask = { task: inputValue, userId: getUserIdFromToken() };
-      fetch("http://localhost:3000/tasks", {
+      fetch("todo-list-pearl-ten-34.vercel.app/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ const Todo = () => {
 
   const handleDelete = (taskId) => {
     // Send a DELETE request to delete the task
-    fetch(`http://localhost:3000/tasks/${taskId}`, {
+    fetch(`todo-list-pearl-ten-34.vercel.app/tasks/${taskId}`, {
       method: "DELETE",
     })
       .then(() => {
@@ -131,7 +131,7 @@ const Todo = () => {
     localStorage.removeItem("token");
   }
   const handleEditRequest = (taskId, newTaskValue) => {
-    fetch(`http://localhost:3000/tasks/${taskId}`, {
+    fetch(`todo-list-pearl-ten-34.vercel.app/tasks/${taskId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
