@@ -131,7 +131,6 @@ const Todo = () => {
     console.log("Logout function started");
     console.log(localStorage.getItem("token"));
     localStorage.removeItem("token");
-    console.log("Token removed");
     history("/");
   }
 
