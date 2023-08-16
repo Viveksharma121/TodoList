@@ -9,7 +9,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/vi" element={Login} />
         <Route path="/" element={<Login />} />{" "}
         <Route path="/todo" element={<Todo />} />
         {/* Render Login component for the home page */}
