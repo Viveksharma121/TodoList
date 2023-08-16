@@ -122,6 +122,9 @@ app.get("/piggy", async (req, res) => {
     res.status(500).send(error);
   }
 });
+app.get("/", (req, res) => {
+  res.json("Hello");
+});
 
 //creating new task
 app.post("/tasks", async (req, res) => {
