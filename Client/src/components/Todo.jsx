@@ -132,6 +132,7 @@ const Todo = () => {
     console.log(localStorage.getItem("token"));
     localStorage.removeItem("token");
     console.log("Token removed");
+    history("/");
   }
 
   const handleEditRequest = (taskId, newTaskValue) => {
