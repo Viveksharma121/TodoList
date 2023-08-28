@@ -19,7 +19,7 @@ function TodoPage() {
 
   const handleTextChange = (newText) => {
     setText(newText);
-    console.log(text); // Update the text state with the new content
+    console.log(text);
   };
 
   const CreateTask = async () => {

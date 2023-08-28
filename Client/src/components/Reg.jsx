@@ -26,14 +26,14 @@ function Reg() {
       });
 
       console.log(response.data);
-      if (!response.ok) {
+      if (response.status === 200) {
+        const data = response.data;
+        console.log(data);
+        history("/");
+      } else if (response.status === 409) {
         window.alert("Email id already exists");
         return;
       }
-
-      const data = response.data;
-      console.log(data);
-      history("/");
     } catch (error) {
       console.error("Error during registration:", error);
     }
