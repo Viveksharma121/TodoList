@@ -28,11 +28,14 @@ function TodoPage() {
       console.log(token + " this is token");
       const decodedtoken = jwt_decode(token);
       const userId = decodedtoken.id;
-      const response = await axios.post("http://localhost:3000/api/tasks", {
-        title,
-        task: text,
-        userId,
-      });
+      const response = await axios.post(
+        "https://todo-list-pl2e.vercel.app/api/tasks",
+        {
+          title,
+          task: text,
+          userId,
+        }
+      );
       console.log("Task create ", response.data);
       settitle("");
       settitle("");
