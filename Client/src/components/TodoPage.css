@@ -1,0 +1,61 @@
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* height: 100vh; */
+}
+
+.todo-title {
+  margin-top: 4rem; /* Adjust this value to control the vertical distance */
+  text-align: center;
+}
+.edit-btn,
+.save-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #fff;
+  background-image: -webkit-linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+  background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+  width: 5rem;
+  transition: 0.4s;
+}
+
+.edit-btn:hover,
+.save-btn:hover {
+  background-image: -webkit-linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+  background-image: linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+}
+
+.title-input1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 50rem !important;
+  height: 3.5rem;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+  font-size: 1.5rem !important;
+  padding: 1rem !important;
+}
+.todo-body {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.body-input {
+  width: 50rem;
+  min-height: 30rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+  resize: vertical;
+  overflow-y: auto;
+}

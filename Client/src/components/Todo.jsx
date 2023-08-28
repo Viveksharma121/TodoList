@@ -1,28 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-// import "./style.css"; // Import your stylesheet
+import "./Todo.css"; // Import your stylesheet
 
 const Todo = () => {
-  const inputRef = useRef(null);
   const history = useNavigate();
   const [tasks, setTasks] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [editingTaskId, setEditingTaskId] = useState(null);
-  const [editedTaskValue, setEditedTaskValue] = useState("");
 
-  // ... (your existing code)
-
-  const handleEdit = (taskId, taskValue) => {
-    setEditingTaskId(taskId);
-    setEditedTaskValue(taskValue);
-  };
-
-  const handleSave = (taskId) => {
-    if (editedTaskValue) {
-      handleEditRequest(taskId, editedTaskValue);
-    } else {
-      alert("Please enter a task");
-    }
+  const handleEdit = (taskId) => {
+    history(`/todo/${taskId}/edit`);
   };
 
   useEffect(() => {
@@ -56,7 +41,7 @@ const Todo = () => {
   };
 
   const fetchAndStore = () => {
-    fetch("https://todo-list-pl2e.vercel.app/piggy", {
+    fetch("http://localhost:3000/api/tasks", {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -87,40 +72,12 @@ const Todo = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (inputValue) {
-      const newTask = { task: inputValue, userId: getUserIdFromToken() };
-      fetch("https://todo-list-pl2e.vercel.app/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: localStorage.getItem("token"),
-        },
-        body: JSON.stringify(newTask),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setTasks([...tasks, data]);
-          setInputValue("");
-        })
-        .catch((error) => {
-          console.error("Error while adding task:", error);
-        });
-    } else {
-      alert("Please enter a task");
-    }
-  };
-
-  const handleDelete = (taskId) => {
-    // Send a DELETE request to delete the task
-    fetch(`https://todo-list-pl2e.vercel.app/tasks/${taskId}`, {
+  const handleDelete = async (taskId) => {
+    await fetch(`http://localhost:3000/api/tasks/todo/${taskId}`, {
       method: "DELETE",
     })
       .then(() => {
-        // Remove the deleted task from the tasks array
-        const updatedTasks = tasks.filter((task) => task._id !== taskId);
-        setTasks(updatedTasks);
+        setTasks((prev) => prev.filter((tasks) => tasks._id !== taskId));
       })
       .catch((error) => {
         console.error("Error while deleting task:", error);
@@ -134,37 +91,8 @@ const Todo = () => {
     history("/");
   }
 
-  const handleEditRequest = (taskId, newTaskValue) => {
-    fetch(`https://todo-list-pl2e.vercel.app/tasks/${taskId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ task: newTaskValue }),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        const updatedTasks = tasks.map((task) =>
-          task._id === taskId ? { ...task, task: newTaskValue } : task
-        );
-        setTasks(updatedTasks);
-        setEditingTaskId(null);
-        setEditedTaskValue("");
-      })
-      .catch((error) => {
-        console.error("Error while editing task:", error);
-      });
-  };
-
-  useEffect(() => {
-    if (editingTaskId) {
-      inputRef.current.focus();
-    }
-  }, [editingTaskId]);
-
   return (
     <div id="pig">
-      {/* <div id="pig"> */}
       <header>
         <header id="together">
           <h2 id="h2">TASK LIST</h2>
@@ -172,17 +100,6 @@ const Todo = () => {
             Logout
           </button>
         </header>
-
-        <form id="form" onSubmit={handleFormSubmit}>
-          <input
-            type="text"
-            id="inputtext"
-            placeholder="enter "
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <input type="submit" id="submit" value="Add Task" />
-        </form>
       </header>
       <main>
         <section className="tdolist">
@@ -191,42 +108,31 @@ const Todo = () => {
             {tasks.map((task) => (
               <div key={task._id} className="task">
                 <div className="content">
-                  {editingTaskId === task._id ? (
-                    <>
-                      <input
-                        ref={inputRef}
-                        className="taskinput"
-                        value={editedTaskValue}
-                        onChange={(e) => setEditedTaskValue(e.target.value)}
-                      />
-                      <button
-                        className="savebtn"
-                        onClick={() => handleSave(task._id)}
-                      >
-                        Save
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <input className="taskinput" value={task.task} readOnly />
-                      <button
-                        className="editbtn"
-                        onClick={() => handleEdit(task._id, task.task)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="delbtn"
-                        onClick={() => handleDelete(task._id)}
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
+                  <input
+                    className="taskinput"
+                    value={task.title}
+                    readOnly
+                    onClick={() => history(`/todo/${task._id}/edit`)}
+                  />
+                  <button
+                    className="editbtn"
+                    onClick={() => handleEdit(task._id)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="delbtn"
+                    onClick={() => handleDelete(task._id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
           </div>
+          <button class="add-todo-button" onClick={() => history("/todopage")}>
+            Add Todo
+          </button>
         </section>
       </main>
     </div>
