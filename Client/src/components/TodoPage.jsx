@@ -50,7 +50,7 @@ function TodoPage() {
       console.log(userId);
 
       const response = await axios.get(
-        `http://localhost:3000/api/tasks/todo/${taskId}`,
+        `https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}`,
         {
           headers: {
             Authorization: token,
@@ -80,7 +80,7 @@ function TodoPage() {
       const decodedtoken = jwt_decode(token);
       const userId = decodedtoken.id;
       const response = await axios.put(
-        `http://localhost:3000/api/tasks/todo/${taskId}/edit`,
+        `https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}/edit`,
         {
           title,
           task: text,

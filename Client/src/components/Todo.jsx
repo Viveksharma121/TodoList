@@ -41,7 +41,7 @@ const Todo = () => {
   };
 
   const fetchAndStore = () => {
-    fetch("http://localhost:3000/api/tasks", {
+    fetch("https://todo-list-pl2e.vercel.app/api/tasks", {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -73,7 +73,7 @@ const Todo = () => {
   };
 
   const handleDelete = async (taskId) => {
-    await fetch(`http://localhost:3000/api/tasks/todo/${taskId}`, {
+    await fetch(`https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}`, {
       method: "DELETE",
     })
       .then(() => {

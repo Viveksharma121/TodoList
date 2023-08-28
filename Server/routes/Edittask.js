@@ -3,7 +3,6 @@ const router = express.Router();
 const EditTask = require("../models/EditTask");
 const jwt = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
-// create task in db
 router.post("/", async (req, res) => {
   try {
     // const taskid = jwt.verify(token, "secret123");
@@ -25,9 +24,7 @@ router.get("/", async (req, res) => {
     const decodedToken = jwt.verify(token, "secret123");
     const userId = decodedToken.id;
     console.log("userId:", userId);
-
-    // Assuming EditTask is your Mongoose model
-    const tasks = await EditTask.find({ userId: userId }); // Use findById directly
+    const tasks = await EditTask.find({ userId: userId });
     console.log("tasks:", tasks);
     res.status(200).json(tasks);
   } catch (error) {
@@ -91,8 +88,8 @@ router.put("/", async (req, res) => {
 //edit
 router.put("/todo/:id/edit", async (req, res) => {
   try {
-    console.log(req.params.id, " id di di"); // check the value of the id parameter
-    console.log(req.body); // check the value of the request body
+    console.log(req.params.id, " id di di");
+    console.log(req.body);
     const result = await EditTask.findByIdAndUpdate(
       req.params.id,
       {
@@ -101,7 +98,7 @@ router.put("/todo/:id/edit", async (req, res) => {
       },
       { new: true }
     );
-    console.log(result); // check the value of the result from the update operation
+    console.log(result);
     if (!result) {
       console.log("Task not found");
       return res.json("Task not found");
@@ -109,7 +106,7 @@ router.put("/todo/:id/edit", async (req, res) => {
     res.json(result);
   } catch (err) {
     res.json(err);
-    console.log(err); // log the error
+    console.log(err);
   }
 });
 //delete

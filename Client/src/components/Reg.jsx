@@ -17,7 +17,7 @@ function Reg() {
 
       const response = await axios({
         method: "post",
-        url: "https://todo-list-pl2e.vercel.app/register", // <-- Add 'http://' or 'https://'
+        url: "https://todo-list-pl2e.vercel.app/register",
         data: {
           name: username,
           email,
@@ -33,7 +33,7 @@ function Reg() {
 
       const data = response.data;
       console.log(data);
-      history("/"); // Use this to navigate to the 'login' route
+      history("/");
     } catch (error) {
       console.error("Error during registration:", error);
     }

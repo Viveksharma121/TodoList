@@ -116,7 +116,6 @@ app.get("/piggy", async (req, res) => {
     if (!ouruser) {
       return res.status(401).json({ error: "user Unauthorised" });
     }
-    //converting user id to mongoose objectId, because ouruserId is string but in mongooose it stores object id as a totally diff data type so we were comparing string with objext id data type so token unauthorised error so in this line we will jyst convert ouruser._id to objectid data type
     const userId = new ObjectId(ouruser._id);
     const tasks = await taskSchema.find({ userId: userId });
     res.json(tasks);
