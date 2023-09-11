@@ -21,7 +21,9 @@ function TodoPage() {
     setText(newText);
     console.log(text);
   };
-
+  const removeHtmlTags = (input) => {
+    return input.replace(/<\/?[^>]+(>|$)/g, "");
+  };
   const CreateTask = async () => {
     try {
       const token = getToken();
@@ -31,7 +33,7 @@ function TodoPage() {
       const response = await axios.post(
         "https://todo-list-pl2e.vercel.app/api/tasks",
         {
-          title,
+          title: removeHtmlTags(title || text.split(" ").slice(0, 3).join(" ")),
           task: text,
           userId,
         }
@@ -63,8 +65,10 @@ function TodoPage() {
 
       // if (response.data.length > 0) {
       const fetchedData = response.data;
-      settitle(fetchedData.title);
-      handleTextChange(fetchedData.task);
+      const cleanTitle = removeHtmlTags(fetchedData.title);
+      const cleanText = fetchedData.task;
+      settitle(cleanTitle);
+      handleTextChange(cleanText);
       // }
 
       console.log(response.title);

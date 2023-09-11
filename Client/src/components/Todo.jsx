@@ -92,49 +92,54 @@ const Todo = () => {
   }
 
   return (
-    <div id="pig">
-      <header>
-        <header id="together">
-          <h2 id="h2">TASK LIST</h2>
-          <button id="logoutBtn" onClick={logout}>
-            Logout
-          </button>
+    <div id="standard">
+      <div id="pig">
+        <header>
+          <header id="together">
+            <h2 id="h2">TASK LIST. What's for today!!</h2>
+            <button id="logoutBtn" onClick={logout}>
+              Logout
+            </button>
+          </header>
         </header>
-      </header>
-      <main>
-        <section className="tdolist">
-          <h2>TASKS</h2>
-          <div id="tasks">
-            {tasks.map((task) => (
-              <div key={task._id} className="task">
-                <div className="content">
-                  <input
-                    className="taskinput"
-                    value={task.title}
-                    readOnly
-                    onClick={() => history(`/todo/${task._id}/edit`)}
-                  />
-                  <button
-                    className="editbtn"
-                    onClick={() => handleEdit(task._id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="delbtn"
-                    onClick={() => handleDelete(task._id)}
-                  >
-                    Delete
-                  </button>
+        <main>
+          <section className="tdolist">
+            <h2>TASKS</h2>
+            <div id="tasks">
+              {tasks.map((task) => (
+                <div key={task._id} className="task">
+                  <div className="content">
+                    <input
+                      className="taskinput"
+                      value={task.title}
+                      readOnly
+                      onClick={() => history(`/todo/${task._id}/edit`)}
+                    />
+                    <button
+                      className="editbtn"
+                      onClick={() => handleEdit(task._id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delbtn"
+                      onClick={() => handleDelete(task._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-          <button class="add-todo-button" onClick={() => history("/todopage")}>
-            Add Todo
-          </button>
-        </section>
-      </main>
+              ))}
+            </div>
+            <button
+              class="add-todo-button"
+              onClick={() => history("/todopage")}
+            >
+              Add Todo
+            </button>
+          </section>
+        </main>
+      </div>
     </div>
   );
 };
