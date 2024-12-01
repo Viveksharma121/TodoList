@@ -87,7 +87,7 @@ app.post("/login", async (req, res) => {
           email: existinguser.email,
           id: existinguser._id,
         },
-        "secret123"
+        "JWT_SECRET"
       );
       return res.json({ status: "ok", existinguser: token });
     } else {
@@ -112,7 +112,7 @@ app.get("/piggy", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "token Unauthorised" });
     }
-    const decodedToken = jwt.verify(token, "secret123");
+    const decodedToken = jwt.verify(token, "JWT_SECRET");
     if (!decodedToken) {
       return res.status(401).json({ error: " decoded Unauthorised" });
     }
@@ -139,7 +139,7 @@ app.post("/tasks", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "no token Unauthorised" });
     }
-    const decodedToken = jwt.verify(token, "secret123");
+    const decodedToken = jwt.verify(token, "JWT_SECRET");
     if (!decodedToken) {
       return res.status(401).json({ error: "no decode Unauthorised" });
     }

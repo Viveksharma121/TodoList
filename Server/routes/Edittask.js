@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
 router.post("/", async (req, res) => {
   try {
-    // const taskid = jwt.verify(token, "secret123");
+    // const taskid = jwt.verify(token, "JWT_SECRET");
     const { title, task, userId } = req.body;
     const newTask = new EditTask({ title, task, userId });
     await newTask.save();
@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "Token missing" });
     }
-    const decodedToken = jwt.verify(token, "secret123");
+    const decodedToken = jwt.verify(token, "JWT_SECRET");
     const userId = decodedToken.id;
     console.log("userId:", userId);
     const tasks = await EditTask.find({ userId: userId });
@@ -39,7 +39,7 @@ router.get("/todo/:taskId", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "Token missing" });
     }
-    const decodedToken = jwt.verify(token, "secret123");
+    const decodedToken = jwt.verify(token, "JWT_SECRET");
     const userId = decodedToken.id;
     const taskId = req.params.taskId;
     console.log(taskId + "bsjkcbkj");
@@ -64,7 +64,7 @@ router.put("/", async (req, res) => {
     }
     const taskId = req.params.taskId;
     const { title, task } = req.body;
-    const decodedtoken = jwt.verify(token, "secret123");
+    const decodedtoken = jwt.verify(token, "JWT_SECRET");
     const userId = decodedtoken.id;
 
     //lets edit
