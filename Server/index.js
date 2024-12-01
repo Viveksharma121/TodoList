@@ -13,7 +13,13 @@ require("dotenv").config();
 // require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "authorization"],
+  })
+);
 app.use(express.json());
 // const DATABASEURL = process.env.DATABASEURL;
 const PORT = process.env.PORT || 3000;
