@@ -20,7 +20,8 @@ const PORT = 3000;
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
-    "mongodb+srv://vivek:SODWx5KTCqA36XX3@cluster0.uicqxfz.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://vivek:SODWx5KTCqA36XX3@cluster0.uicqxfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    // "mongodb+srv://vivek:SODWx5KTCqA36XX3@cluster0.uicqxfz.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
