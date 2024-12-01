@@ -18,7 +18,7 @@ app.use(express.json());
 // const DATABASEURL = process.env.DATABASEURL;
 const PORT = process.env.PORT || 3000;
 
-const uri = process.env.DATABASEURL;
+const uri = process.env.MONGODB_URI;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
