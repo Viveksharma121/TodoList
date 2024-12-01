@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./Todo.css"; // Import your stylesheet
 
@@ -41,7 +41,7 @@ const Todo = () => {
   };
 
   const fetchAndStore = () => {
-    fetch("https://todo-list-pl2e.vercel.app/api/tasks", {
+    fetch("https://todo-list-c9yo.vercel.app/api/tasks", {
       method: "GET",
       headers: {
         authorization: localStorage.getItem("token"),
@@ -73,7 +73,7 @@ const Todo = () => {
   };
 
   const handleDelete = async (taskId) => {
-    await fetch(`https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}`, {
+    await fetch(`https://todo-list-c9yo.vercel.app/api/tasks/todo/${taskId}`, {
       method: "DELETE",
     })
       .then(() => {

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Reg.css";
 function Reg() {
   const history = useNavigate();
@@ -17,7 +17,7 @@ function Reg() {
 
       const response = await axios({
         method: "post",
-        url: "https://todo-list-pl2e.vercel.app/register",
+        url: "https://todo-list-c9yo.vercel.app/register",
         data: {
           name: username,
           email,

@@ -3,10 +3,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./TodoPage.css";
 // import jwt from "jsonwebtoken";
-import jwt_decode from "jwt-decode";
 import axios from "axios";
-import { useParams } from "react-router";
-import { useNavigate } from "react-router";
+import jwt_decode from "jwt-decode";
+import { useNavigate, useParams } from "react-router";
 function TodoPage() {
   const history = useNavigate();
   const { taskId } = useParams();
@@ -31,7 +30,7 @@ function TodoPage() {
       const decodedtoken = jwt_decode(token);
       const userId = decodedtoken.id;
       const response = await axios.post(
-        "https://todo-list-pl2e.vercel.app/api/tasks",
+        "https://todo-list-c9yo.vercel.app/api/tasks",
         {
           title: removeHtmlTags(title || text.split(" ").slice(0, 3).join(" ")),
           task: text,
@@ -55,7 +54,7 @@ function TodoPage() {
       console.log(userId);
 
       const response = await axios.get(
-        `https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}`,
+        `https://todo-list-c9yo.vercel.app/api/tasks/todo/${taskId}`,
         {
           headers: {
             Authorization: token,
@@ -87,7 +86,7 @@ function TodoPage() {
       const decodedtoken = jwt_decode(token);
       const userId = decodedtoken.id;
       const response = await axios.put(
-        `https://todo-list-pl2e.vercel.app/api/tasks/todo/${taskId}/edit`,
+        `https://todo-list-c9yo.vercel.app/api/tasks/todo/${taskId}/edit`,
         {
           title,
           task: text,
