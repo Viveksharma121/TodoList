@@ -41,14 +41,22 @@ router.get("/todo/:taskId", async (req, res) => {
     }
     const decodedToken = jwt.verify(token, JWT_SECRET);
     const userId = decodedToken.id;
-    const taskId = req.params.taskId;
+    const taskId = req.params;
     console.log(taskId + "bsjkcbkj");
+    if (!taskId || !mongoose.Types.ObjectId.isValid(taskId)) {
+      return res.status(400).json({ error: "Invalid task ID" });
+    }
+    if (!token) {
+      return res.status(401).json({ error: "Token missing" });
+    }
     const task = await EditTask.findOne({ _id: taskId, userId: userId });
 
     if (!task) {
       return res.status(404).json({ error: "Task not found" });
     }
-
+    if (!task) {
+      return res.status(404).json({ error: "Task not found" });
+    }
     res.status(200).json(task);
   } catch (error) {
     console.log("Error fetching task:", error);

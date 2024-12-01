@@ -47,6 +47,10 @@ function TodoPage() {
   };
   const fetchTask = async () => {
     try {
+      if (!taskId) {
+        console.log("No taskId provided - new task mode");
+        return;
+      }
       const token = getToken();
       console.log(token + " this is token");
       const decodedtoken = jwt_decode(token);
@@ -76,8 +80,10 @@ function TodoPage() {
     }
   };
   useEffect(() => {
-    fetchTask();
-  }, []);
+    if (taskId) {
+      fetchTask();
+    }
+  }, [taskId]);
 
   const UpdateTask = async () => {
     try {
