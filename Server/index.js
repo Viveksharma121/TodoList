@@ -9,18 +9,21 @@ const user = require("./models/user");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const taskRoute = require("./routes/Edittask");
-require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+require("dotenv").config();
+// require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 // const DATABASEURL = process.env.DATABASEURL;
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+const uri = process.env.DATABASEURL;
 
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
-    "mongodb+srv://vivek:SODWx5KTCqA36XX3@cluster0.uicqxfz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    uri,
     // "mongodb+srv://vivek:SODWx5KTCqA36XX3@cluster0.uicqxfz.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
