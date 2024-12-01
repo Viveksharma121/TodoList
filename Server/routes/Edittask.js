@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "Token missing" });
     }
-    const decodedToken = jwt.verify(token, "JWT_SECRET");
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     const userId = decodedToken.id;
     console.log("userId:", userId);
     const tasks = await EditTask.find({ userId: userId });
@@ -39,7 +39,7 @@ router.get("/todo/:taskId", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "Token missing" });
     }
-    const decodedToken = jwt.verify(token, "JWT_SECRET");
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     const userId = decodedToken.id;
     const taskId = req.params.taskId;
     console.log(taskId + "bsjkcbkj");
@@ -64,7 +64,7 @@ router.put("/", async (req, res) => {
     }
     const taskId = req.params.taskId;
     const { title, task } = req.body;
-    const decodedtoken = jwt.verify(token, "JWT_SECRET");
+    const decodedtoken = jwt.verify(token, JWT_SECRET);
     const userId = decodedtoken.id;
 
     //lets edit

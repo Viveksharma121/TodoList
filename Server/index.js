@@ -20,6 +20,8 @@ const PORT = process.env.PORT || 3000;
 
 const uri = process.env.DATABASEURL;
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
@@ -87,7 +89,7 @@ app.post("/login", async (req, res) => {
           email: existinguser.email,
           id: existinguser._id,
         },
-        "JWT_SECRET"
+        JWT_SECRET
       );
       return res.json({ status: "ok", existinguser: token });
     } else {
@@ -112,7 +114,7 @@ app.get("/piggy", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "token Unauthorised" });
     }
-    const decodedToken = jwt.verify(token, "JWT_SECRET");
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     if (!decodedToken) {
       return res.status(401).json({ error: " decoded Unauthorised" });
     }
@@ -139,7 +141,7 @@ app.post("/tasks", async (req, res) => {
     if (!token) {
       return res.status(401).json({ error: "no token Unauthorised" });
     }
-    const decodedToken = jwt.verify(token, "JWT_SECRET");
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     if (!decodedToken) {
       return res.status(401).json({ error: "no decode Unauthorised" });
     }
